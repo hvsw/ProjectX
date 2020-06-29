@@ -1,5 +1,5 @@
 //
-//  ViewModifiers.swift
+//  ListSeparatorStyle.swift
 //  ProjectX
 //
 //  Created by Henrique Valcanaia on 2020-06-28.

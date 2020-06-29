@@ -46,25 +46,29 @@ struct PatientDetailView: View {
     let patient: Patient
     
     var body: some View {
-        VStack {
-            PatientCard(patient: patient)
-                .padding(12)
-            
-            List {
-                Section(header: Text("Dados")) {
-                    HealthDataCell(healthData: .heartRate(94))
-                        .padding(EdgeInsets(top: 8, leading: 0, bottom: 0, trailing: 0))
-                    HealthDataCell(healthData: .sleep(6, 13))
-                        .padding(EdgeInsets(top: 8, leading: 0, bottom: 0, trailing: 0))
+        ScrollView {
+            LazyVStack(alignment: .center, spacing: 16) {
+                PatientCard(patient: patient)
+                HStack {
+                    Text("Resumo da semana").font(.title).fontWeight(.medium)
+                    Spacer()
                 }
+                .padding(.top, 4)
+                SymptomsView()
+                MedicineCard()
+                HealthDataCell(healthData: .heartRate(94))
+                HealthDataCell(healthData: .sleep(6, 13))
             }
-        }.navigationTitle(patient.name)
+            .padding()
+        }
+        //.background(Color.red)
+        .navigationTitle(patient.name)
     }
 }
 
-struct PatientDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        PatientDetailView(patient: Storage.patients.first!)
+extension View {
+    func card() -> some View {
+        padding(12).background(Color(.systemFill)).cornerRadius(12)
     }
 }
 
@@ -119,5 +123,58 @@ struct HealthDataCell: View {
         .padding(12)
         .background(Color(.systemFill))
         .cornerRadius(12)
+    }
+}
+
+struct PatientDetailView_Previews: PreviewProvider {
+    static var previews: some View {
+//        Group {
+//            PatientDetailView(patient: Storage.patients.first!)
+            NavigationView {
+                PatientDetailView(patient: Storage.patients.first!).colorScheme(.dark)
+            }
+            .colorScheme(.dark)
+            .previewDevice("iPhone 8")
+//        }
+    }
+}
+
+struct MedicineCard: View {
+    var body: some View {
+        VStack(spacing: 16) {
+            HStack {
+                Image(systemName: "staroflife.fill").font(.body)
+                Text("Medicação").font(.headline).bold()
+                Spacer()
+                Button(action: {}) {
+                    Image(systemName: "plus.circle")
+                        .font(.headline)
+                }
+            }
+            .foregroundColor(Color.blue)
+            VStack(spacing: 8) {
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text("Lamictal 200mg")
+                            .font(.headline)
+                            .bold()
+                        Text("1x por dia às 9:30")
+                            .foregroundColor(Color(.secondaryLabel))
+                    }
+                    Spacer()
+                }
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text("Ritalina LA 10mg")
+                            .font(.headline)
+                            .bold()
+                        Text("1x por dia às 9:30")
+                            .foregroundColor(Color(.secondaryLabel))
+                    }
+                    Spacer()
+                }
+            }
+        }
+        .card()
     }
 }

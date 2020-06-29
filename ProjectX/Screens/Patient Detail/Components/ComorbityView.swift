@@ -20,3 +20,11 @@ struct ComorbityView: View {
             .colorMultiply(comorbity.severity.color)
     }
 }
+
+struct ComorbityView_Previews: PreviewProvider {
+    static var previews: some View {
+        ComorbityView(
+            comorbity: Storage.patients.first!.comorbities.first!
+        )
+    }
+}
