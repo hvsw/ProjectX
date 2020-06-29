@@ -56,12 +56,13 @@ struct PatientDetailView: View {
                 .padding(.top, 4)
                 SymptomsView()
                 MedicineCard()
-                HealthDataCell(healthData: .heartRate(94))
+                HeartBeatView()
+                // TODO: Sleep
+                //HealthDataCell(healthData: .heartRate(94))
                 HealthDataCell(healthData: .sleep(6, 13))
             }
             .padding()
         }
-        //.background(Color.red)
         .navigationTitle(patient.name)
     }
 }
@@ -172,6 +173,31 @@ struct MedicineCard: View {
                             .foregroundColor(Color(.secondaryLabel))
                     }
                     Spacer()
+                }
+            }
+        }
+        .card()
+    }
+}
+
+struct HeartBeatView: View {
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack {
+                Image(systemName: "waveform.path.ecg").font(.body)
+                Text("Frequência Cardíaca (repouso)")
+                    .font(.headline).bold()
+                Spacer()
+            }
+            .foregroundColor(Color.red)
+            VStack(alignment: .leading, spacing: 4) {
+                Text("65 bpm")
+                    .font(.title).bold()
+                HStack(alignment: .firstTextBaseline, spacing: 8) {
+                    Image(systemName: "arrow.up")
+                        .font(.footnote)
+                    Text("3% comparado a semana passada")
+                        .font(.footnote)
                 }
             }
         }
