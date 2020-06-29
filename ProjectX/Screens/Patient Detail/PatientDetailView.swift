@@ -68,8 +68,10 @@ struct PatientDetailView: View {
 }
 
 extension View {
-    func card() -> some View {
-        padding(12).background(Color(.systemFill)).cornerRadius(12)
+    func card(paddingValue: CGFloat = 12) -> some View {
+        padding(paddingValue)
+            .background(Color(.systemFill))
+            .cornerRadius(12)
     }
 }
 
