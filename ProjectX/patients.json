@@ -1,0 +1,34 @@
+{
+  "patients": [
+    {
+      "name": "Camilla Romero",
+      "age": 27,
+      "profilePictureURL": "camilla"
+    },
+    {
+      "name": "Guilherme Gades",
+      "age": 99,
+      "profilePictureURL": "gades"
+    },
+    {
+      "name": "William Hass",
+      "age": 28,
+      "profilePictureURL": "william"
+    },
+    {
+      "name": "Steve Jobs",
+      "age": 50,
+      "profilePictureURL": "steve"
+    },
+    {
+      "name": "Elon Musk",
+      "age": 45,
+      "profilePictureURL": "elon"
+    },
+    {
+      "name": "Bill Gates",
+      "age": 60,
+      "profilePictureURL": "bill"
+    }
+  ]
+}
