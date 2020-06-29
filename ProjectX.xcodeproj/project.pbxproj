@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3D3CDC9124AA7D0200A0FCD9 /* SymptomsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3CDC9024AA7D0200A0FCD9 /* SymptomsView.swift */; };
+		3D3CDC9424AA8C8A00A0FCD9 /* CreateTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3CDC9324AA8C8A00A0FCD9 /* CreateTaskView.swift */; };
 		623B001D24A945270067FC60 /* PatientVerticalCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623B001C24A945270067FC60 /* PatientVerticalCard.swift */; };
 		623B001F24A946E50067FC60 /* LastVisitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623B001E24A946E50067FC60 /* LastVisitView.swift */; };
 		62B5C62124A905A00068E9C8 /* ProjectXApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B5C62024A905A00068E9C8 /* ProjectXApp.swift */; };
@@ -45,6 +46,7 @@
 
 /* Begin PBXFileReference section */
 		3D3CDC9024AA7D0200A0FCD9 /* SymptomsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomsView.swift; sourceTree = "<group>"; };
+		3D3CDC9324AA8C8A00A0FCD9 /* CreateTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskView.swift; sourceTree = "<group>"; };
 		623B001C24A945270067FC60 /* PatientVerticalCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientVerticalCard.swift; sourceTree = "<group>"; };
 		623B001E24A946E50067FC60 /* LastVisitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastVisitView.swift; sourceTree = "<group>"; };
 		62B5C61D24A905A00068E9C8 /* ProjectX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectX.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -94,6 +96,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D3CDC9224AA8BE500A0FCD9 /* Task */ = {
+			isa = PBXGroup;
+			children = (
+				3D3CDC9324AA8C8A00A0FCD9 /* CreateTaskView.swift */,
+			);
+			path = Task;
+			sourceTree = "<group>";
+		};
 		3DCC978724AA381F009910A3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +151,7 @@
 		3DCC978C24AA3AC3009910A3 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				3D3CDC9224AA8BE500A0FCD9 /* Task */,
 				3DCC979024AA3B0D009910A3 /* Patient Detail */,
 				3DCC978D24AA3AE4009910A3 /* Patients List */,
 			);
@@ -372,6 +383,7 @@
 				62B5C65824A937A20068E9C8 /* PatientCard.swift in Sources */,
 				62B5C62124A905A00068E9C8 /* ProjectXApp.swift in Sources */,
 				62B5C65A24A938F40068E9C8 /* Storage.swift in Sources */,
+				3D3CDC9424AA8C8A00A0FCD9 /* CreateTaskView.swift in Sources */,
 				62B5C64E24A936B30068E9C8 /* Sequence+KeyPath.swift in Sources */,
 				62B5C65224A937190068E9C8 /* PatientDetailView.swift in Sources */,
 				3D3CDC9124AA7D0200A0FCD9 /* SymptomsView.swift in Sources */,
