@@ -15,6 +15,7 @@ struct Symptom: Identifiable {
 }
 
 struct SymptomsView: View {
+    @State var showCreateTaskView: Bool = false
     let symptoms: [Symptom] = (1...6).map { num -> Symptom in
         switch num {
         case 1:
@@ -73,7 +74,9 @@ struct SymptomsView: View {
                 ForEach(symptoms) { symptom in
                     SymptomCardView(symptom: symptom)
                 }
-                Button(action: {}) {
+                Button(action: {
+                    self.showCreateTaskView = true
+                }) {
                     HStack {
                         Spacer()
                         Image(systemName: "plus")
@@ -85,6 +88,12 @@ struct SymptomsView: View {
                     .card()
                 }
             }
+        }
+        .sheet(
+            isPresented: $showCreateTaskView) {
+            CreateTaskView(save: {
+                            self.showCreateTaskView = false
+            })
         }
     }
 }

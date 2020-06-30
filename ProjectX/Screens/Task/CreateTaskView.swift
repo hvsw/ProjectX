@@ -9,36 +9,47 @@ import SwiftUI
 
 struct CreateTaskView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
-            CreateTaskView()
-        }
+        CreateTaskView(save: {})
     }
 }
 
 struct CreateTaskView: View {
     @State var taskType: Int = 0
-
+    let save: () -> Void
+    
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 16) {
-                TaskTypeView(taskType: $taskType)
-                switch taskType {
-                case 0:
-                    SymptonTaskOptionsView()
-                case 1:
-                    SideEffectsTaskOptionsView()
-                case 2:
-                    MedicationTaskOptionsView()
-                default:
-                    EmptyView()
-                }
+        VStack(spacing: 0) {
+            HStack {
+                Text("Criar Tarefa").font(.largeTitle).bold()
                 Spacer()
+                Button("Salvar", action: save) 
             }
             .padding()
-            Spacer()
+            ScrollView {
+                VStack(alignment: .leading, spacing: 16) {
+                    TaskTypeView(taskType: $taskType)
+                    switch taskType {
+                    case 0:
+                        SymptonTaskOptionsView()
+                    case 1:
+                        SideEffectsTaskOptionsView()
+                    case 2:
+                        MedicationTaskOptionsView()
+                    default:
+                        EmptyView()
+                    }
+                    HStack(spacing: 8) {
+                        Checkbox(marked: .constant(true))
+                            .scaleEffect(0.9)
+                        Text("Enviar notificações ao paciente")
+                            .font(.body)
+                    }
+                    Spacer()
+                }
+                .padding()
+                Spacer()
+            }
         }
-        .navigationBarItems(trailing: Button("Salvar") {})
-        .navigationTitle("Criar Tarefa")
     }
 }
 
