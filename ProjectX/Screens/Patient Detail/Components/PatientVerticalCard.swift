@@ -12,12 +12,8 @@ struct PatientVerticalCard: View {
     let patient: Patient
     
     var body: some View {
-        VStack {
+        VStack(spacing: 8) {
             VStack(spacing: 2) {
-                HStack {
-                    Spacer()
-                    LastVisitView()
-                }
                 if let patientImage = patient.imageName {
                     Image(patientImage)
                         .resizable()
@@ -38,29 +34,33 @@ struct PatientVerticalCard: View {
                         .background(Color(.systemFill))
                         .cornerRadius(12)
                 }
-                
-                HStack(alignment: VerticalAlignment.firstTextBaseline) {
+                VStack(spacing: 4) {
                     Text(patient.name)
                         .font(.title)
                         .foregroundColor(Color(.label))
-                    
-                    Text(String("(\(patient.age))"))
+                    Text(String("\(patient.age) anos"))
                         .font(.callout)
                         .foregroundColor(Color(.secondaryLabel))
+                    HStack(alignment: .firstTextBaseline, spacing: 4) {
+                        Text("Última consulta:")
+                            .font(.caption)
+                            .foregroundColor(Color(.label))
+                        Text(String("31/12/2018"))
+                            .font(.caption)
+                            .foregroundColor(Color(.secondaryLabel))
+                    }
                 }
             }
-            
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
-                    ForEach(patient.comorbities.shuffled(), id: \.id) { comorbity in
+                    ForEach(patient.comorbities.shuffled()[0...1], id: \.id) { comorbity in
                         ComorbityView(comorbity: comorbity)
                     }
                 }
             }
             .padding(EdgeInsets(top: 4, leading: 0, bottom: 0, trailing: 0))
-            
         }
-        .padding(20)
+        .padding()
         .background(Color(.systemFill))
         .cornerRadius(12)
     }
@@ -68,7 +68,12 @@ struct PatientVerticalCard: View {
 
 struct PatientVerticalCard_Previews: PreviewProvider {
     static var previews: some View {
-        PatientVerticalCard(patient: Storage.patients.first!)
+        VStack {
+            PatientVerticalCard(patient: Storage.patients.first!)
+            PatientVerticalCard(patient: Storage.patients.first!)
+            PatientCard(patient: Storage.patients.first!)
+            Spacer()
+        }
     }
 }
 

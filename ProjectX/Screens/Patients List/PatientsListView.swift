@@ -13,15 +13,19 @@ struct PatientsListView: View {
     
     var body: some View {
         NavigationView {
-            List {
-                ForEach(self.patients, id: \.id) { patient in
-                    NavigationLink(destination: PatientDetailView(patient: patient)) {
-                        PatientVerticalCard(patient: patient)
-                            .padding(18)
+            ScrollView {
+                LazyVStack(spacing: 16) {
+                    ForEach(self.patients, id: \.id) { patient in
+                        NavigationLink(
+                            destination: PatientDetailView(patient: patient)
+                        ) {
+                            PatientVerticalCard(patient: patient)
+                                .padding(.horizontal)
+                        }
+                        .buttonStyle(PlainButtonStyle())
                     }
                 }
             }
-            .listSeparatorStyle(style: .none)
             .navigationTitle("Pacientes")
             .navigationBarItems(trailing:
                                     Button(action: {
