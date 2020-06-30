@@ -8,10 +8,48 @@
 import SwiftUI
 
 struct Symptom: Identifiable {
+    enum Comparison {
+        case increased(Int)
+        case decreased(Int)
+
+        private var percentage: String {
+            switch self {
+            case .increased(let amount):
+                return "\(amount)%"
+            case .decreased(let amount):
+                return "\(amount)%"
+            }
+        }
+
+        var description: String {
+            return "\(percentage) comparado a semana passada"
+        }
+    }
     let id = UUID()
     let imageName: String
     let name: String
     let count: Int
+    let comparison: Comparison
+    let color: Color
+}
+
+extension Symptom.Comparison {
+    var imageName: String {
+        switch self {
+        case .decreased:
+            return "arrow.down"
+        case .increased:
+            return "arrow.up"
+        }
+    }
+    var color: Color {
+        switch self {
+        case .decreased:
+            return Color(.label)
+        case .increased:
+            return Color(.label)
+        }
+    }
 }
 
 struct SymptomsView: View {
@@ -20,49 +58,63 @@ struct SymptomsView: View {
         switch num {
         case 1:
             return Symptom(
-                imageName: "",
+                imageName: "flame.fill",
                 name: "Ansiedade",
-                count: 6
+                count: 3,
+                comparison: .decreased(2),
+                color: Color(.systemRed)
             )
         case 2:
             return Symptom(
-                imageName: "",
+                imageName: "hand.raised.fill",
                 name: "Falta de apetite",
-                count: 6
+                count: 5,
+                comparison: .decreased(1),
+                color: Color(.systemPurple)
             )
         case 3:
             return Symptom(
-                imageName: "",
+                imageName: "burst.fill",
                 name: "Pânico",
-                count: 6
+                count: 2,
+                comparison: .increased(3),
+                color: Color(.systemBlue)
             )
         case 4:
             return Symptom(
-                imageName: "",
+                imageName: "bolt.horizontal.fill",
                 name: "Dor de cabeça",
-                count: 6
+                count: 0,
+                comparison: .decreased(5),
+                color: Color(.systemPink)
             )
         case 5:
             return Symptom(
-                imageName: "",
+                imageName: "umbrella.fill",
                 name: "Tristeza",
-                count: 6
+                count: 1,
+                comparison: .increased(3),
+                color: Color(.systemIndigo)
             )
         case 6:
             return Symptom(
-                imageName: "",
+                imageName: "moon.fill",
                 name: "Insônia",
-                count: 6
+                count: 2,
+                comparison: .decreased(2),
+                color: Color(.systemTeal)
             )
         default:
             return Symptom(
                 imageName: "",
                 name: "Item \(num)",
-                count: 6
+                count: num,
+                comparison: .decreased(0),
+                color: Color(.systemYellow)
             )
         }
     }
-    
+
     let columns = [
         GridItem(.flexible()),
         GridItem(.flexible())
@@ -108,33 +160,43 @@ struct SymptonsView_Previews: PreviewProvider {
 struct SymptomHeader: View {
     let symptom: Symptom
     
+    var customFont: Font =
+        Font.system(.caption, design: .rounded).weight(.medium)
+    
     var body: some View {
         HStack(alignment: .firstTextBaseline, spacing: 8) {
-            Image(systemName: "suit.heart.fill")
+            Image(systemName: symptom.imageName)
                 .font(.caption)
+                .foregroundColor(symptom.color)
             Text(symptom.name)
-                .font(.caption).bold()
-                .foregroundColor(Color(.darkGray))
+                .font(customFont)
+                .foregroundColor(symptom.color)
+                .saturation(2.0)
             Spacer()
         }
+        
     }
 }
 
 struct SymptomComparisonView: View {
+    let symptom: Symptom
+
     var body: some View {
         HStack(alignment: .firstTextBaseline, spacing: 8) {
-            Image(systemName: "arrow.up")
-            Text("3% comparado a semana passada")
+            Image(systemName: symptom.comparison.imageName)
+                .foregroundColor(symptom.comparison.color)
+            Text(symptom.comparison.description).foregroundColor(Color(.label).opacity(0.8))
         }
         .font(.footnote)
     }
 }
 
 struct SymptomCountView: View {
+    let count: Int
     var body: some View {
         HStack {
             Spacer()
-            Text("6x").font(.title).bold()
+            Text("\(count)x").font(.title).bold()
             Spacer()
         }
     }
@@ -148,8 +210,8 @@ struct SymptomCardView: View {
             VStack(spacing: 8) {
                 SymptomHeader(symptom: symptom)
                 VStack(spacing: 4) {
-                    SymptomCountView()
-                    SymptomComparisonView()
+                    SymptomCountView(count: symptom.count)
+                    SymptomComparisonView(symptom: symptom)
                 }
             }
             Spacer()

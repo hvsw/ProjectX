@@ -49,17 +49,18 @@ struct PatientDetailView: View {
         ScrollView {
             LazyVStack(alignment: .center, spacing: 16) {
                 PatientCard(patient: patient)
+                MedicineCard()
                 HStack {
-                    Text("Resumo da semana").font(.title).fontWeight(.medium)
+                    Text("Resumo da semana")
+                        .font(.title)
+                        .fontWeight(.medium)
                     Spacer()
                 }
                 .padding(.top, 4)
                 SymptomsView()
-                MedicineCard()
+                SleepDataCell()
                 HeartBeatView()
-                // TODO: Sleep
-                //HealthDataCell(healthData: .heartRate(94))
-                HealthDataCell(healthData: .sleep(6, 13))
+                
             }
             .padding()
         }
@@ -72,60 +73,6 @@ extension View {
         padding(paddingValue)
             .background(Color(.systemFill))
             .cornerRadius(12)
-    }
-}
-
-struct HealthDataCell: View {
-    
-    let healthData: HealthData
-    
-    var body: some View {
-        VStack {
-            HStack {
-                HStack {
-                    Image(systemName: self.healthData.imageName)
-                    Text(self.healthData.humanReadableName)
-                        .font(.headline)
-                }
-                .foregroundColor(self.healthData.color)
-                Spacer()
-                Text("18 Jun")
-                    .font(.subheadline)
-                    .foregroundColor(Color(.secondaryLabel))
-                Image(systemName: "chevron.right.circle")
-                    .foregroundColor(Color(.secondaryLabel))
-            }
-            
-            HStack(alignment: .firstTextBaseline, spacing: 4) {
-                switch self.healthData {
-                case .heartRate(let heartRate):
-                    Text(String(heartRate))
-                        .font(.title)
-                        .bold()
-                    Text("batimentos por minuto")
-                
-                case .sleep(let hours, let minutes):
-                    HStack(spacing: 2) {
-                        Text(String(hours))
-                            .font(.title2)
-                            .bold()
-                        Text("hr")
-                    }
-                    
-                    HStack(spacing: 2) {
-                        Text(String(minutes))
-                            .font(.title2)
-                            .bold()
-                        Text("min")
-                    }
-                }
-                Spacer()
-            }
-            .padding(EdgeInsets(top: 4, leading: 0, bottom: 0, trailing: 0))
-        }
-        .padding(12)
-        .background(Color(.systemFill))
-        .cornerRadius(12)
     }
 }
 
@@ -196,9 +143,40 @@ struct HeartBeatView: View {
                 Text("65 bpm")
                     .font(.title).bold()
                 HStack(alignment: .firstTextBaseline, spacing: 8) {
-                    Image(systemName: "arrow.up")
+                    Image(systemName: "arrow.down")
+                        .foregroundColor(.green)
                         .font(.footnote)
                     Text("3% comparado a semana passada")
+                        .font(.footnote)
+                }
+            }
+        }
+        .card()
+    }
+}
+
+struct SleepDataCell: View {
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack {
+                Image(systemName: "bed.double.fill").font(.body)
+                Text("Análise de sono")
+                    .font(.headline).bold()
+                Spacer()
+            }
+            .foregroundColor(Color.orange)
+            VStack(alignment: .leading, spacing: 4) {
+                HStack(alignment: .center) {
+                    Text("6h 45m")
+                        .font(.title).bold()
+                    Text("(Média por noite)")
+                        .font(.caption)
+                }
+                HStack(alignment: .firstTextBaseline, spacing: 8) {
+                    Image(systemName: "arrow.up")
+                        .foregroundColor(Color(.systemGreen))
+                        .font(.footnote)
+                    Text("1% comparado a semana passada")
                         .font(.footnote)
                 }
             }
