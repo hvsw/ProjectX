@@ -13,8 +13,13 @@ struct ProjectXApp: App {
 
     var body: some Scene {
         WindowGroup {
-            //PatientsListView()
-            NotificationHelperView()
+            NavigationView {
+                List {
+                    NavigationLink("App", destination: PatientsListView())
+                    NavigationLink("Debug notification", destination: NotificationHelperView())
+                }
+                .navigationTitle("Project X")
+            }
         }
     }
 }

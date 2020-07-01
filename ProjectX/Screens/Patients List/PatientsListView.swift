@@ -12,29 +12,27 @@ struct PatientsListView: View {
     let patients: [Patient] = Storage.patients
     
     var body: some View {
-        NavigationView {
-            ScrollView {
-                LazyVStack(spacing: 16) {
-                    ForEach(self.patients, id: \.id) { patient in
-                        NavigationLink(
-                            destination: PatientDetailView(patient: patient)
-                        ) {
-                            PatientVerticalCard(patient: patient)
-                                .padding(.horizontal)
-                        }
-                        .buttonStyle(PlainButtonStyle())
+        ScrollView {
+            LazyVStack(spacing: 16) {
+                ForEach(self.patients, id: \.id) { patient in
+                    NavigationLink(
+                        destination: PatientDetailView(patient: patient)
+                    ) {
+                        PatientVerticalCard(patient: patient)
+                            .padding(.horizontal)
                     }
+                    .buttonStyle(PlainButtonStyle())
                 }
             }
-            .navigationTitle("Pacientes")
-            .navigationBarItems(trailing:
-                                    Button(action: {
-                                        print("Novo paciente")
-                                    }, label: {
-                                        Image(systemName: "plus")
-                                    })
-            )
         }
+        .navigationTitle("Pacientes")
+        .navigationBarItems(trailing:
+                                Button(action: {
+                                    print("Novo paciente")
+                                }, label: {
+                                    Image(systemName: "plus")
+                                })
+        )
     }
 }
 
