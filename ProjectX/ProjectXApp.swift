@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import UserNotifications
 
 @main
 struct ProjectXApp: App {
+
     var body: some Scene {
         WindowGroup {
-            PatientsListView()
+            //PatientsListView()
+            NotificationHelperView()
         }
     }
 }

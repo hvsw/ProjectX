@@ -10,6 +10,8 @@
 		3D3CDC9124AA7D0200A0FCD9 /* SymptomsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3CDC9024AA7D0200A0FCD9 /* SymptomsView.swift */; };
 		3D3CDC9424AA8C8A00A0FCD9 /* CreateTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3CDC9324AA8C8A00A0FCD9 /* CreateTaskView.swift */; };
 		3D6F54C724AB50AF0085C4D8 /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6F54C624AB50AF0085C4D8 /* Checkbox.swift */; };
+		3DA647EF24AD0C0100C4ADBE /* NotificationHelperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA647EE24AD0C0100C4ADBE /* NotificationHelperView.swift */; };
+		3DA647F124AD0FD200C4ADBE /* NotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA647F024AD0FD200C4ADBE /* NotificationHelper.swift */; };
 		623B001D24A945270067FC60 /* PatientVerticalCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623B001C24A945270067FC60 /* PatientVerticalCard.swift */; };
 		623B001F24A946E50067FC60 /* LastVisitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623B001E24A946E50067FC60 /* LastVisitView.swift */; };
 		62B5C62124A905A00068E9C8 /* ProjectXApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B5C62024A905A00068E9C8 /* ProjectXApp.swift */; };
@@ -45,10 +47,27 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		3DA647E924ACBEF900C4ADBE /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		3D3CDC9024AA7D0200A0FCD9 /* SymptomsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomsView.swift; sourceTree = "<group>"; };
 		3D3CDC9324AA8C8A00A0FCD9 /* CreateTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskView.swift; sourceTree = "<group>"; };
 		3D6F54C624AB50AF0085C4D8 /* Checkbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
+		3DA647DB24ACBEF900C4ADBE /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		3DA647DD24ACBEF900C4ADBE /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
+		3DA647EE24AD0C0100C4ADBE /* NotificationHelperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHelperView.swift; sourceTree = "<group>"; };
+		3DA647F024AD0FD200C4ADBE /* NotificationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHelper.swift; sourceTree = "<group>"; };
 		623B001C24A945270067FC60 /* PatientVerticalCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientVerticalCard.swift; sourceTree = "<group>"; };
 		623B001E24A946E50067FC60 /* LastVisitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastVisitView.swift; sourceTree = "<group>"; };
 		62B5C61D24A905A00068E9C8 /* ProjectX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectX.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,6 +133,24 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		3DA647DA24ACBEF900C4ADBE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3DA647DB24ACBEF900C4ADBE /* UserNotifications.framework */,
+				3DA647DD24ACBEF900C4ADBE /* UserNotificationsUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3DA647ED24AD0BE200C4ADBE /* Notification Helper */ = {
+			isa = PBXGroup;
+			children = (
+				3DA647EE24AD0C0100C4ADBE /* NotificationHelperView.swift */,
+				3DA647F024AD0FD200C4ADBE /* NotificationHelper.swift */,
+			);
+			path = "Notification Helper";
+			sourceTree = "<group>";
+		};
 		3DCC978724AA381F009910A3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +199,7 @@
 		3DCC978C24AA3AC3009910A3 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				3DA647ED24AD0BE200C4ADBE /* Notification Helper */,
 				3D3CDC9224AA8BE500A0FCD9 /* Task */,
 				3DCC979024AA3B0D009910A3 /* Patient Detail */,
 				3DCC978D24AA3AE4009910A3 /* Patients List */,
@@ -204,6 +242,7 @@
 				62B5C61F24A905A00068E9C8 /* ProjectX */,
 				62B5C63124A905A20068E9C8 /* ProjectXTests */,
 				62B5C63C24A905A20068E9C8 /* ProjectXUITests */,
+				3DA647DA24ACBEF900C4ADBE /* Frameworks */,
 				62B5C61E24A905A00068E9C8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -267,6 +306,7 @@
 				62B5C61924A905A00068E9C8 /* Sources */,
 				62B5C61A24A905A00068E9C8 /* Frameworks */,
 				62B5C61B24A905A00068E9C8 /* Resources */,
+				3DA647E924ACBEF900C4ADBE /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
@@ -393,9 +433,11 @@
 				62B5C65024A936FF0068E9C8 /* Patient.swift in Sources */,
 				3D6F54C724AB50AF0085C4D8 /* Checkbox.swift in Sources */,
 				62B5C65824A937A20068E9C8 /* PatientCard.swift in Sources */,
+				3DA647EF24AD0C0100C4ADBE /* NotificationHelperView.swift in Sources */,
 				62B5C62124A905A00068E9C8 /* ProjectXApp.swift in Sources */,
 				62B5C65A24A938F40068E9C8 /* Storage.swift in Sources */,
 				3D3CDC9424AA8C8A00A0FCD9 /* CreateTaskView.swift in Sources */,
+				3DA647F124AD0FD200C4ADBE /* NotificationHelper.swift in Sources */,
 				62B5C64E24A936B30068E9C8 /* Sequence+KeyPath.swift in Sources */,
 				62B5C65224A937190068E9C8 /* PatientDetailView.swift in Sources */,
 				3D3CDC9124AA7D0200A0FCD9 /* SymptomsView.swift in Sources */,
