@@ -203,6 +203,8 @@
 				3D3CDC9224AA8BE500A0FCD9 /* Create Task */,
 				3DCC979024AA3B0D009910A3 /* Patient Detail */,
 				3DCC978D24AA3AE4009910A3 /* Patients List */,
+				3D3CDC9224AA8BE500A0FCD9 /* Create Task */,
+				3DCC979024AA3B0D009910A3 /* Patient Detail */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
