@@ -28,7 +28,9 @@ struct PatientsListView: View {
         .navigationTitle("Pacientes")
         .navigationBarItems(trailing:
                                 Button(action: {
-                                    print("Novo paciente")
+                                    CreateTaskView {
+                                        print("Save")
+                                    }
                                 }, label: {
                                     Image(systemName: "plus")
                                 })

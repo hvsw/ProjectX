@@ -81,6 +81,8 @@ struct PatientCard: View {
 
 struct PatientCard_Previews: PreviewProvider {
     static var previews: some View {
-        PatientCard(patient: Storage.patients.first!)
+        PatientCard(patient: Storage.patients.first(where: { (patient: Patient) -> Bool in
+            return patient.name == "Henrique Valcanaia"
+        })!)
     }
 }

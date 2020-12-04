@@ -81,7 +81,9 @@ struct PatientDetailView_Previews: PreviewProvider {
 //        Group {
 //            PatientDetailView(patient: Storage.patients.first!)
             NavigationView {
-                PatientDetailView(patient: Storage.patients.first!).colorScheme(.dark)
+                PatientDetailView(patient: Storage.patients.first(where: { (patient: Patient) -> Bool in
+                    return patient.name == "Henrique Valcanaia"
+                })!).colorScheme(.dark)
             }
             .colorScheme(.dark)
             .previewDevice("iPhone 8")
