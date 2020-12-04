@@ -9,34 +9,10 @@ import UIKit
 
 struct NotificationHelper {
 
-    private enum Notification: String {
-        case withInput = "notification_with_input"
-        case withOptions = "notification_with_options"
-        
-        var title: String {
-            switch self {
-            case .withInput:
-                return "Titulo com input"
-            case .withOptions:
-                return "Titulo com options"
-            }
-        }
-        
-        var subtitle: String {
-            switch self {
-            case .withInput:
-                return "Subtitulo com input"
-            case .withOptions:
-                return "Subtitulo com options"
-            }
-        }
-    }
-
     func requestAuth() {
         UNUserNotificationCenter.current()
             .requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
             if success {
-                print("All set!")
                 registerNotificationCategories()
             } else if let error = error {
                 print(error.localizedDescription)
@@ -45,19 +21,14 @@ struct NotificationHelper {
     }
 
     func sendInputTextNotification() {
-        sendNotification(.withInput)
+        sendNotification(NotificationCategoryWithInput().content())
     }
 
     func sendMultipleOptionsNotification() {
-        sendNotification(.withOptions)
+        sendNotification(NotificationCategoryWithOptions().content())
     }
 
-    private func sendNotification(_ notification: Notification) {
-        let content = UNMutableNotificationContent()
-        content.title = notification.title
-        content.subtitle = notification.subtitle
-        content.categoryIdentifier = notification.rawValue
-
+    private func sendNotification(_ notificationContent: UNMutableNotificationContent) {
         let trigger = UNTimeIntervalNotificationTrigger(
             timeInterval: 5,
             repeats: false
@@ -65,19 +36,33 @@ struct NotificationHelper {
 
         let request = UNNotificationRequest(
             identifier: UUID().uuidString,
-            content: content,
+            content: notificationContent,
             trigger: trigger
         )
         UNUserNotificationCenter.current().add(request)
     }
 
-    private func notificationWithOptionsCategory() -> UNNotificationCategory {
-        let notification = Notification.withOptions
+    private func registerNotificationCategories() {
+        UNUserNotificationCenter.current()
+            .setNotificationCategories([
+                NotificationCategoryWithInput().category(),
+                NotificationCategoryWithOptions().category()
+            ])
+    }
+}
+
+// Notifications mocks
+struct NotificationCategoryWithOptions {
+    let identifier: String = "notification_with_options"
+
+    func category() -> UNNotificationCategory {
+        // Escala de Humor de Brunel
         let actionNames = [
-            "Agitado",
-            "Motivado",
-            "Cansado",
-            "Desanimado"
+            "Nada",
+            "Um pouco",
+            "Moderadamente",
+            "Bastante",
+            "Extremamente"
         ]
         let actions = actionNames.map {
             UNNotificationAction(
@@ -87,27 +72,38 @@ struct NotificationHelper {
             )
         }
         return UNNotificationCategory(
-            identifier: notification.rawValue,
+            identifier: identifier,
             actions: actions,
             intentIdentifiers: [],
             hiddenPreviewsBodyPlaceholder: "",
             options: .customDismissAction
         )
     }
+    
+    func content() -> UNMutableNotificationContent {
+        let content = UNMutableNotificationContent()
+        content.title = "Ansiedade"
+        content.subtitle = "Quão ansioso você está se sentindo?"
+        content.categoryIdentifier = identifier
+        return content
+    }
+}
 
-    private func notificationWithInputCategory() -> UNNotificationCategory {
-        let notification = Notification.withInput
+struct NotificationCategoryWithInput {
+    let identifier: String = "notification_with_input"
+
+    func category() -> UNNotificationCategory {
         let otherAction: UNNotificationAction = {
             UNTextInputNotificationAction(
-                identifier: "",
-                title: "Diga algo",
+                identifier: identifier,
+                title: "",
                 options: .foreground,
                 textInputButtonTitle: "Enviar",
-                textInputPlaceholder: "Como você está se sentindo?"
+                textInputPlaceholder: "Ansioso, irritado, desanimado..."
             )
         }()
         return UNNotificationCategory(
-            identifier: notification.rawValue,
+            identifier: identifier,
             actions: [otherAction],
             intentIdentifiers: [],
             hiddenPreviewsBodyPlaceholder: "",
@@ -115,11 +111,11 @@ struct NotificationHelper {
         )
     }
 
-    private func registerNotificationCategories() {
-        UNUserNotificationCenter.current()
-            .setNotificationCategories([
-                notificationWithOptionsCategory(),
-                notificationWithInputCategory()
-            ])
+    func content() -> UNMutableNotificationContent {
+        let content = UNMutableNotificationContent()
+        content.title = "Sintomas"
+        content.subtitle = "Como você está se sentindo?"
+        content.categoryIdentifier = identifier
+        return content
     }
 }

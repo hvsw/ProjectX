@@ -117,12 +117,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3D3CDC9224AA8BE500A0FCD9 /* Task */ = {
+		3D3CDC9224AA8BE500A0FCD9 /* Create Task */ = {
 			isa = PBXGroup;
 			children = (
 				3D3CDC9324AA8C8A00A0FCD9 /* CreateTaskView.swift */,
 			);
-			path = Task;
+			path = "Create Task";
 			sourceTree = "<group>";
 		};
 		3D6F54C524AB50A30085C4D8 /* Views */ = {
@@ -200,9 +200,11 @@
 			isa = PBXGroup;
 			children = (
 				3DA647ED24AD0BE200C4ADBE /* Notification Helper */,
-				3D3CDC9224AA8BE500A0FCD9 /* Task */,
+				3D3CDC9224AA8BE500A0FCD9 /* Create Task */,
 				3DCC979024AA3B0D009910A3 /* Patient Detail */,
 				3DCC978D24AA3AE4009910A3 /* Patients List */,
+				3D3CDC9224AA8BE500A0FCD9 /* Create Task */,
+				3DCC979024AA3B0D009910A3 /* Patient Detail */,
 			);
 			path = Screens;
 			sourceTree = "<group>";

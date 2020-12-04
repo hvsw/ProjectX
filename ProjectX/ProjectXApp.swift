@@ -18,7 +18,7 @@ struct ProjectXApp: App {
                     NavigationLink("App", destination: PatientsListView())
                     NavigationLink("Debug notification", destination: NotificationHelperView())
                 }
-                .navigationTitle("Project X")
+                .navigationTitle(" ") // Deixa sem título por cause do título do back button nas childs
             }
         }
     }
